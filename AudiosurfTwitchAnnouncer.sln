@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31424.327
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AudiosurfTwitchAnnouncer", "AudiosurfTwitchAnnouncer\AudiosurfTwitchAnnouncer.csproj", "{6C1A5C65-A2B5-4F37-8EA7-DB7AC9812513}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6C1A5C65-A2B5-4F37-8EA7-DB7AC9812513}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6C1A5C65-A2B5-4F37-8EA7-DB7AC9812513}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6C1A5C65-A2B5-4F37-8EA7-DB7AC9812513}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6C1A5C65-A2B5-4F37-8EA7-DB7AC9812513}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {41B21A54-34E7-437F-A642-DB9C2EFF5A26}
+	EndGlobalSection
+EndGlobal
