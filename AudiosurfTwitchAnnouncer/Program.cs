@@ -26,6 +26,9 @@ namespace AudiosurfTwitchAnnouncer
             var parser = new FileIniDataParser();
             configData = parser.ReadFile("config.ini");
 
+            string songStartMessage = Program.configData["Announcements"]["SongStartMessage"];
+            string songFinishMessage = Program.configData["Announcements"]["SongFinishMessage"];
+
             bot = new Bot();
             Console.WriteLine("AudiosurfTwitchAnnouncer by AudiosurfResearch");
 
@@ -58,13 +61,20 @@ namespace AudiosurfTwitchAnnouncer
                         songName = data;
                         break;
                     case "SONG":
-                        bot.SendMessage($"/me is now surfing {artistName} - {songName}");
+                        var startMsg = songStartMessage;
+                        startMsg = startMsg.Replace("%ARTIST%", artistName);
+                        startMsg = startMsg.Replace("%SONG%", songName);
+                        bot.SendMessage(startMsg);
                         break;
                     case "FNSC":
                         score = int.Parse(data);
                         break;
                     case "RSLT":
-                        bot.SendMessage($"/me has finished surfing {artistName} - {songName} with a score of {score}");
+                        var finishMsg = songFinishMessage;
+                        finishMsg = finishMsg.Replace("%ARTIST%", artistName);
+                        finishMsg = finishMsg.Replace("%SONG%", songName);
+                        finishMsg = finishMsg.Replace("%SCORE%", score.ToString());
+                        bot.SendMessage(finishMsg);
                         break;
                     default:
                         Console.WriteLine("Unknown command " + command);
@@ -103,6 +113,7 @@ namespace AudiosurfTwitchAnnouncer
             //client.OnLog += Client_OnLog;
             client.OnJoinedChannel += Client_OnJoinedChannel;
             client.OnConnected += Client_OnConnected;
+            client.OnIncorrectLogin += Client_OnIncorrectLogin;
 
             client.Connect();
             client.JoinChannel(userName);
@@ -119,6 +130,10 @@ namespace AudiosurfTwitchAnnouncer
         private void Client_OnJoinedChannel(object sender, OnJoinedChannelArgs e) {
             Console.WriteLine("Twitch channel joined!");
             channel = client.GetJoinedChannel(userName);
+        }
+
+        public void Client_OnIncorrectLogin(object sender, OnIncorrectLoginArgs e) {
+            Console.WriteLine("Login failed! Please make sure the credentials in the config.ini file are correct.");
         }
 
         public void SendMessage(string msg) {
